@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Gerenciamento de Candidatos</title>
+</h:head>
+<h:body>
+    <h1>Cadastro de Candidatos</h1>
+
+    <h:form>
+        <h:messages globalOnly="true" />
+        <h:panelGrid columns="2">
+            <h:outputLabel for="nome" value="Nome:" />
+            <h:inputText id="nome" value="#{candidatoBean.candidato.nome}" required="true" />
+
+            <h:outputLabel for="email" value="Email:" />
+            <h:inputText id="email" value="#{candidatoBean.candidato.email}" required="true" />
+        </h:panelGrid>
+        <h:commandButton value="Salvar" action="#{candidatoBean.salvar}" />
+    </h:form>
+    
+    <f:metadata>
+        <f:viewAction action="#{candidatoBean.carregarCandidatos}" />
+    </f:metadata>
+
+    <h2>Lista de Candidatos</h2>
+    <h:dataTable value="#{candidatoBean.candidatos}" var="c" border="1" cellpadding="5">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{c.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Nome</f:facet>
+            #{c.nome}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Email</f:facet>
+            #{c.email}
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>
